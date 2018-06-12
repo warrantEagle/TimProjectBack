@@ -5,20 +5,25 @@ import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
-import project.controller.PersonController;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @NodeEntity
 public class Result {
 
+    /**
+     * Neo4j doesn't REALLY have bi-directional relationships. It just means when querying
+     * to ignore the direction of the relationship.
+     * https://dzone.com/articles/modelling-data-neo4j
+     */
+    @Relationship(type = "Training", direction = Relationship.INCOMING)
+    public Set<Person> training;
     @Id
     @GeneratedValue
     private Long id;
-
-
-    private int kcal, length,time;
+    private int kcal, length, time;
     private String loginPerson;
     private Date date;
     private Point[] points;
@@ -35,14 +40,6 @@ public class Result {
         this.points = points;
     }
 
-    /**
-     * Neo4j doesn't REALLY have bi-directional relationships. It just means when querying
-     * to ignore the direction of the relationship.
-     * https://dzone.com/articles/modelling-data-neo4j
-     */
-    @Relationship(type = "Training", direction = Relationship.INCOMING)
-    public Set<Person> training;
-
     public void Training(Person person) {
         if (training == null) {
             training = new HashSet<>();
@@ -57,6 +54,7 @@ public class Result {
                 ", kcal=" + kcal +
                 ", length=" + length +
                 ", time=" + time +
+                ", points=" + points +
                 '}';
     }
 
