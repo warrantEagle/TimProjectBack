@@ -39,9 +39,9 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public Result create(Result result) {
-        Result res = resultRepository.save(result);
+        /*Result res = resultRepository.save(result);
         Person person = personRepository.findByLogin(result.getLoginPerson());
-        res.Training(person);
+        res.Training(person);*/
         return resultRepository.save(result);
     }
 }

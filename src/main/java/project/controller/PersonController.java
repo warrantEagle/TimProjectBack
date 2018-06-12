@@ -2,7 +2,9 @@ package project.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import project.model.Person;
 import project.service.PersonServiceImpl;
@@ -27,16 +29,29 @@ public class PersonController {
     public Person create(@RequestBody Person person){
         return personServiceImpl.create(person);
     }
-    @DeleteMapping(value ={"/{login}"})
-    public void deletePersonByLogin(@PathVariable String login){
+    @DeleteMapping(value ={"/{login}/"})
+    public void deletePersonByLogin(@PathVariable String login,@PathVariable String password){
         Person person = personServiceImpl.findByLogin(login);
         if(person != null)
             personServiceImpl.delete(person);
         //else logger
     }
-    @GetMapping(value="/{login}")
-    public Person getPersonByPesel(@PathVariable String login){
-        return this.personServiceImpl.findByLogin(login);
+    @GetMapping(value="login/{login}/{password}")
+    public ResponseEntity<?> getPersonByLogin(@PathVariable String login,@PathVariable String password){
+        Person person = this.personServiceImpl.findByLogin(login);
+        if(person != null) {
+            if(person.getPassword().equals(password)){
+                return new ResponseEntity<>(this.personServiceImpl.findByLogin(login),HttpStatus.OK);
+            }
+            return new ResponseEntity<>(null,HttpStatus.UNAUTHORIZED);
+
+        }
+        return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+
+
+
+
+//        return this.personServiceImpl.findByLogin(login);
     }
     @GetMapping("/hi")
     public String hi() {
