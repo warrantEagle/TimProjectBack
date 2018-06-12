@@ -26,22 +26,24 @@ public class PersonController {
     }
 
     @PostMapping
-    public Person create(@RequestBody Person person){
-        return personServiceImpl.create(person);
+    public ResponseEntity<?> create(@RequestBody Person person){
+        return new ResponseEntity<>(personServiceImpl.create(person),HttpStatus.OK);
     }
     @DeleteMapping(value ={"/{login}/"})
-    public void deletePersonByLogin(@PathVariable String login,@PathVariable String password){
+    public  ResponseEntity<?> deletePersonByLogin(@PathVariable String login){
         Person person = personServiceImpl.findByLogin(login);
-        if(person != null)
+        if(person != null){
             personServiceImpl.delete(person);
-        //else logger
+            return new ResponseEntity<>(true,HttpStatus.OK);}
+        else
+            return new ResponseEntity<>(false,HttpStatus.NOT_FOUND);
     }
     @GetMapping(value="login/{login}/{password}")
     public ResponseEntity<?> getPersonByLogin(@PathVariable String login,@PathVariable String password){
         Person person = this.personServiceImpl.findByLogin(login);
         if(person != null) {
             if(person.getPassword().equals(password)){
-                return new ResponseEntity<>(this.personServiceImpl.findByLogin(login),HttpStatus.OK);
+                return new ResponseEntity<>(true,HttpStatus.OK);
             }
             return new ResponseEntity<>(null,HttpStatus.UNAUTHORIZED);
 
