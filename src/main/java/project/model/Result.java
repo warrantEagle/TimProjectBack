@@ -14,25 +14,23 @@ import java.util.stream.Collectors;
 public class Result {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue()
     private Long id;
 
-
+    private int idResult;
     private int kcal, length,time;
     private String loginPerson;
     private Date date;
-    private Point[] points;
 
     public Result() {
     }
 
-    public Result(int kcal, int length, int time, String loginPerson, Date date, Point[] points) {
+    public Result(int kcal, int length, int time, String loginPerson, Date date) {
         this.kcal = kcal;
         this.length = length;
         this.time = time;
         this.loginPerson = loginPerson;
         this.date = date;
-        this.points = points;
     }
 
     /**
@@ -50,14 +48,12 @@ public class Result {
         training.add(person);
     }
 
-    @Override
-    public String toString() {
-        return "Result{" +
-                "ide=" + id +
-                ", kcal=" + kcal +
-                ", length=" + length +
-                ", time=" + time +
-                '}';
+    public int getIdResult() {
+        return idResult;
+    }
+
+    public void setIdResult(int idResult) {
+        this.idResult = idResult;
     }
 
     public Long getId() {
@@ -106,13 +102,5 @@ public class Result {
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public Point[] getPoints() {
-        return points;
-    }
-
-    public void setPoints(Point[] points) {
-        this.points = points;
     }
 }
