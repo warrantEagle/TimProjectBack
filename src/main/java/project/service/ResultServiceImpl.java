@@ -37,17 +37,19 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public Result create(Result result) {
+        int a =-1;
         List<Result> results = findAll();
-        Vector<Integer> ids = new Vector<Integer>();
-        for(int i =0; i<results.size();i++)
-            ids.add(results.get(i).getIdResult());
+        if(results.size() >0) {
+            Vector<Integer> ids = new Vector<Integer>();
+            for (int i = 0; i < results.size(); i++)
+                ids.add(results.get(i).getIdResult());
 
-       int a = ids.get(0);
-        for(int i =0; i<ids.size() ;i++)
-        {
+            a = ids.get(0);
+            for (int i = 0; i < ids.size(); i++) {
 
-            if(ids.get(i ) >a)
-                a = ids.get(i);
+                if (ids.get(i) > a)
+                    a = ids.get(i);
+            }
         }
         result.setIdResult(a+1);
         Result res =  resultRepository.save(result);
@@ -59,7 +61,7 @@ public class ResultServiceImpl implements ResultService {
 
         for(int i=0; i<point.length; i++){
             point[i].setIdResult(this.idResult);
-            return this.pointRepository.save(point[i]);
+            this.pointRepository.save(point[i]);
         }
 
         return null;
