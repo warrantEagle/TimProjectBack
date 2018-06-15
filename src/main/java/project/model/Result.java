@@ -18,7 +18,8 @@ public class Result {
     private Long id;
 
     private int idResult;
-    private int kcal, length,time;
+    private int length;
+    private double kcal, time;
     private String loginPerson;
     private Date date;
 
@@ -64,11 +65,11 @@ public class Result {
         this.id = id;
     }
 
-    public int getKcal() {
+    public double getKcal() {
         return kcal;
     }
 
-    public void setKcal(int kcal) {
+    public void setKcal(double kcal) {
         this.kcal = kcal;
     }
 
@@ -80,11 +81,11 @@ public class Result {
         this.length = length;
     }
 
-    public int getTime() {
+    public double getTime() {
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(double time) {
         this.time = time;
     }
 

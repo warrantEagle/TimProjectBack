@@ -21,9 +21,12 @@ public class ResultServiceImpl implements ResultService {
     }
 
     @Override
-    public Result findById(int id) {
-        return resultRepository.findById(id);
+    public Result getResultByResultId(int idResult) {
+        return resultRepository.findByIdResult(idResult);
     }
+
+
+
 
     @Override
     public void delete(Result result) {
@@ -56,7 +59,7 @@ public class ResultServiceImpl implements ResultService {
        idResult = res.getIdResult();
         return null;
     }
-
+    @Override
     public Point createPoints(Point[] point) {
 
         for(int i=0; i<point.length; i++){
@@ -65,5 +68,9 @@ public class ResultServiceImpl implements ResultService {
         }
 
         return null;
+    }
+    @Override
+    public List<Result> findByLoginPerson(String loginPerson) {
+        return resultRepository.findByLoginPerson(loginPerson);
     }
 }

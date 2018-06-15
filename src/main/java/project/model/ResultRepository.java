@@ -6,8 +6,9 @@ import java.util.List;
 
 public interface ResultRepository extends CrudRepository<Result, Long> {
 
-    Result findById(int id);
+    List<Result> findByLoginPerson(String loginPerson);
     void delete(Result result);
     List<Result> findAll();
     Result save(Result result);
+    Result findByIdResult(int idResult);
 }

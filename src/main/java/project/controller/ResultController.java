@@ -21,13 +21,20 @@ public class ResultController {
     @Autowired
     private ResultServiceImpl resultServiceImpl;
 
-    /*@GetMapping
-    public List findAll(){
-        return resultServiceImpl.findAll();
-    }*/
+
     @GetMapping(value={"findAllResult"})
     public ResponseEntity<?>  findAll(){
         return new ResponseEntity<>(resultServiceImpl.findAll(),HttpStatus.OK);
+    }
+
+    @GetMapping(value="/res/{idResult}")
+    public ResponseEntity<?>  getResultByResultId(@PathVariable int idResult){
+        return new ResponseEntity<>(resultServiceImpl.getResultByResultId(idResult),HttpStatus.OK);
+    }
+
+    @GetMapping(value ={"/{result}"})
+    public ResponseEntity<?>  findResultByLoginPerson(@PathVariable String result){
+        return new ResponseEntity<>(resultServiceImpl.findByLoginPerson(result),HttpStatus.OK);
     }
 
 
@@ -47,12 +54,12 @@ public class ResultController {
             return new ResponseEntity<>(false,HttpStatus.UNAUTHORIZED);
     }
 
-    @DeleteMapping(value ={"/{result}"})
-    public ResponseEntity<?>  deleteResultById(@PathVariable int id){
+    /*@DeleteMapping(value ={"/deleteResult{result}"})
+    public ResponseEntity<?>  deleteResultById(@PathVariable int result.id){
         Result result = resultServiceImpl.findById(id);
         if(result != null)
         return new ResponseEntity<>(true,HttpStatus.OK);
         else
             return new ResponseEntity<>(false,HttpStatus.NOT_FOUND);
-    }
+    }*/
 }
