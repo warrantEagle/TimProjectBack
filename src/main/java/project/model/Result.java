@@ -5,13 +5,33 @@ import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
+import project.controller.PersonController;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @NodeEntity
 public class Result {
+
+    @Id
+    @GeneratedValue()
+    private Long id;
+
+    private int idResult;
+    private int kcal, length,time;
+    private String loginPerson;
+    private Date date;
+
+    public Result() {
+    }
+
+    public Result(int kcal, int length, int time, String loginPerson, Date date) {
+        this.kcal = kcal;
+        this.length = length;
+        this.time = time;
+        this.loginPerson = loginPerson;
+        this.date = date;
+    }
 
     /**
      * Neo4j doesn't REALLY have bi-directional relationships. It just means when querying
@@ -20,25 +40,6 @@ public class Result {
      */
     @Relationship(type = "Training", direction = Relationship.INCOMING)
     public Set<Person> training;
-    @Id
-    @GeneratedValue
-    private Long id;
-    private int kcal, length, time;
-    private String loginPerson;
-    private Date date;
-    private Point[] points;
-
-    public Result() {
-    }
-
-    public Result(int kcal, int length, int time, String loginPerson, Date date, Point[] points) {
-        this.kcal = kcal;
-        this.length = length;
-        this.time = time;
-        this.loginPerson = loginPerson;
-        this.date = date;
-        this.points = points;
-    }
 
     public void Training(Person person) {
         if (training == null) {
@@ -47,15 +48,12 @@ public class Result {
         training.add(person);
     }
 
-    @Override
-    public String toString() {
-        return "Result{" +
-                "ide=" + id +
-                ", kcal=" + kcal +
-                ", length=" + length +
-                ", time=" + time +
-                ", points=" + points +
-                '}';
+    public int getIdResult() {
+        return idResult;
+    }
+
+    public void setIdResult(int idResult) {
+        this.idResult = idResult;
     }
 
     public Long getId() {
@@ -104,13 +102,5 @@ public class Result {
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public Point[] getPoints() {
-        return points;
-    }
-
-    public void setPoints(Point[] points) {
-        this.points = points;
     }
 }

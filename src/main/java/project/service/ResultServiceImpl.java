@@ -2,24 +2,22 @@ package project.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import project.model.Person;
-import project.model.PersonRepository;
-import project.model.Result;
-import project.model.ResultRepository;
+import project.model.*;
 
 import java.util.List;
+import java.util.Vector;
+
 @Service
 public class ResultServiceImpl implements ResultService {
-
+    private int idResult;
     @Autowired
     private final ResultRepository resultRepository;
-
     @Autowired
-    private final PersonRepository personRepository;
+    private final PointRepository pointRepository;
 
-    public ResultServiceImpl(ResultRepository resultRepository, PersonRepository personRepository) {
+    public ResultServiceImpl(ResultRepository resultRepository, PointRepository pointRepository) {
         this.resultRepository = resultRepository;
-        this.personRepository = personRepository;
+        this.pointRepository = pointRepository;
     }
 
     @Override
@@ -39,9 +37,33 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public Result create(Result result) {
-        /*Result res = resultRepository.save(result);
-        Person person = personRepository.findByLogin(result.getLoginPerson());
-        res.Training(person);*/
-        return resultRepository.save(result);
+        int a =-1;
+        List<Result> results = findAll();
+        if(results.size() >0) {
+            Vector<Integer> ids = new Vector<Integer>();
+            for (int i = 0; i < results.size(); i++)
+                ids.add(results.get(i).getIdResult());
+
+            a = ids.get(0);
+            for (int i = 0; i < ids.size(); i++) {
+
+                if (ids.get(i) > a)
+                    a = ids.get(i);
+            }
+        }
+        result.setIdResult(a+1);
+        Result res =  resultRepository.save(result);
+       idResult = res.getIdResult();
+        return null;
+    }
+
+    public Point createPoints(Point[] point) {
+
+        for(int i=0; i<point.length; i++){
+            point[i].setIdResult(this.idResult);
+            this.pointRepository.save(point[i]);
+        }
+
+        return null;
     }
 }

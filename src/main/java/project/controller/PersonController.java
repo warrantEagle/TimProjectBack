@@ -28,6 +28,7 @@ public class PersonController {
     @PostMapping
     public ResponseEntity<?> create(@RequestBody Person person){
         return new ResponseEntity<>(personServiceImpl.create(person),HttpStatus.OK);
+
     }
     @DeleteMapping(value ={"/{login}/"})
     public  ResponseEntity<?> deletePersonByLogin(@PathVariable String login){
@@ -38,7 +39,7 @@ public class PersonController {
         else
             return new ResponseEntity<>(false,HttpStatus.NOT_FOUND);
     }
-    @GetMapping(value="login/{login}/{password}")
+    @GetMapping(value={"login/{login}/{password}"})
     public ResponseEntity<?> getPersonByLogin(@PathVariable String login,@PathVariable String password){
         Person person = this.personServiceImpl.findByLogin(login);
         if(person != null) {
@@ -50,19 +51,11 @@ public class PersonController {
         }
         return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
 
-
-
-
-//        return this.personServiceImpl.findByLogin(login);
     }
+
     @GetMapping("/hi")
     public String hi() {
         return "Hello World from dupadupa API";
-    }
-    @GetMapping("/")
-    public String home(){
-        System.out.println("adwaduuioawd");
-        return "adwaduuioawd";
     }
 
 
