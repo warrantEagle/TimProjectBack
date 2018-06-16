@@ -18,18 +18,19 @@ public class Result {
     private Long id;
 
     private int idResult;
-    private int kcal, length,time;
-    private String loginPerson;
-    private Date date;
+    private double kcal, length;
+    long time;
+    //private String loginPerson;
+    private long date;
 
     public Result() {
     }
 
-    public Result(int kcal, int length, int time, String loginPerson, Date date) {
+    public Result(double kcal, double length, long time, long date) {
         this.kcal = kcal;
         this.length = length;
         this.time = time;
-        this.loginPerson = loginPerson;
+        //this.loginPerson = loginPerson;
         this.date = date;
     }
 
@@ -64,43 +65,44 @@ public class Result {
         this.id = id;
     }
 
-    public int getKcal() {
+    public double getKcal() {
         return kcal;
     }
 
-    public void setKcal(int kcal) {
+    public void setKcal(double kcal) {
         this.kcal = kcal;
     }
 
-    public int getLength() {
+    public double getLength() {
         return length;
     }
 
-    public void setLength(int length) {
+    public void setLength(double length) {
         this.length = length;
     }
 
-    public int getTime() {
+    public long getTime() {
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(long time) {
         this.time = time;
     }
 
-    public String getLoginPerson() {
+    /*public String getLoginPerson() {
         return loginPerson;
     }
 
     public void setLoginPerson(String loginPerson) {
         this.loginPerson = loginPerson;
-    }
+    }*/
 
-    public Date getDate() {
+    public long getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(long date) {
         this.date = date;
     }
+
 }

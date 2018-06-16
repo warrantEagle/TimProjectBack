@@ -15,7 +15,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
-@RequestMapping({"/api/result"})
+@RequestMapping("/api/result")
 public class ResultController {
 
     @Autowired
@@ -33,12 +33,12 @@ public class ResultController {
 
 
 
-    @PostMapping(value={"/createResult"})
+    @PostMapping(value={"createResult"})
     public ResponseEntity<?>  create(@RequestBody Result result){
 
         return new ResponseEntity<>(resultServiceImpl.create(result),HttpStatus.OK);
     }
-    @PostMapping(value={"/createPoints"})
+    @PostMapping(value={"createPoints"})
     public ResponseEntity<?>  createPoints(@RequestBody Point[] point){
 
         if ((point!=null))

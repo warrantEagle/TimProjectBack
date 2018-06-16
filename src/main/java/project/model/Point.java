@@ -13,17 +13,16 @@ public class Point {
 
 
     private int idResult;
-    private int rank;
-    private double x;
-    private double y;
+
+    private double longitude;
+    private double latitude;
 
     public Point() {
     }
 
-    public Point(int rank, double x, double y) {
-        this.rank = rank;
-        this.x = x;
-        this.y = y;
+    public Point(double longitude, double latitude) {
+        this.longitude = longitude;
+        this.latitude = latitude;
     }
 
 
@@ -44,27 +43,19 @@ public class Point {
         this.idResult = idResult;
     }
 
-    public int getRank() {
-        return rank;
+     public double getLongitude() {
+        return longitude;
     }
 
-    public void setRank(int rank) {
-        this.rank = rank;
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
-    public double getX() {
-        return x;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 }
