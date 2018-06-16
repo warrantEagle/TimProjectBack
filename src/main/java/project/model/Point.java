@@ -26,7 +26,6 @@ public class Point {
     }
 
 
-
     public Long getId() {
         return id;
     }
@@ -43,7 +42,7 @@ public class Point {
         this.idResult = idResult;
     }
 
-     public double getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
