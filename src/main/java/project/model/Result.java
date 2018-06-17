@@ -20,17 +20,17 @@ public class Result {
     private int idResult;
     private double kcal, length;
     long time;
-    //private String loginPerson;
+    private String loginPerson;
     private long date;
 
     public Result() {
     }
 
-    public Result(double kcal, double length, long time, long date) {
+    public Result(double kcal, double length, long time, long date, String loginPerson) {
         this.kcal = kcal;
         this.length = length;
         this.time = time;
-        //this.loginPerson = loginPerson;
+        this.loginPerson = loginPerson;
         this.date = date;
     }
 
@@ -89,13 +89,13 @@ public class Result {
         this.time = time;
     }
 
-    /*public String getLoginPerson() {
+    public String getLoginPerson() {
         return loginPerson;
     }
 
     public void setLoginPerson(String loginPerson) {
         this.loginPerson = loginPerson;
-    }*/
+    }
 
     public long getDate() {
         return date;

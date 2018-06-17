@@ -13,16 +13,17 @@ public class Point {
 
 
     private int idResult;
-
+    private int index;
     private double longitude;
     private double latitude;
 
     public Point() {
     }
 
-    public Point(double longitude, double latitude) {
+    public Point(double longitude, double latitude, int index) {
         this.longitude = longitude;
         this.latitude = latitude;
+        this.index = index;
     }
 
 
@@ -56,5 +57,13 @@ public class Point {
 
     public void setLatitude(double latitude) {
         this.latitude = latitude;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 }
