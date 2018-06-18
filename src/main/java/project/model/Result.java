@@ -20,17 +20,17 @@ public class Result {
     private int idResult;
     private double kcal, length;
     long time;
-    //private String loginPerson;
-    private long date;
+    private String loginPerson;
+    private Date date;
 
     public Result() {
     }
 
-    public Result(double kcal, double length, long time, long date) {
+    public Result(double kcal, double length, long time, Date date,String loginPerson) {
         this.kcal = kcal;
         this.length = length;
         this.time = time;
-        //this.loginPerson = loginPerson;
+        this.loginPerson = loginPerson;
         this.date = date;
     }
 
@@ -39,7 +39,7 @@ public class Result {
      * to ignore the direction of the relationship.
      * https://dzone.com/articles/modelling-data-neo4j
      */
-    @Relationship(type = "Training", direction = Relationship.INCOMING)
+  /*  @Relationship(type = "Training", direction = Relationship.INCOMING)
     public Set<Person> training;
 
     public void Training(Person person) {
@@ -47,7 +47,7 @@ public class Result {
             training = new HashSet<>();
         }
         training.add(person);
-    }
+    }*/
 
     public int getIdResult() {
         return idResult;
@@ -89,19 +89,19 @@ public class Result {
         this.time = time;
     }
 
-    /*public String getLoginPerson() {
+    public String getLoginPerson() {
         return loginPerson;
     }
 
     public void setLoginPerson(String loginPerson) {
         this.loginPerson = loginPerson;
-    }*/
+    }
 
-    public long getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

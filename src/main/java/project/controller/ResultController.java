@@ -54,12 +54,14 @@ public class ResultController {
             return new ResponseEntity<>(false,HttpStatus.UNAUTHORIZED);
     }
 
-    /*@DeleteMapping(value ={"/deleteResult{result}"})
-    public ResponseEntity<?>  deleteResultById(@PathVariable int result.id){
-        Result result = resultServiceImpl.findById(id);
-        if(result != null)
-        return new ResponseEntity<>(true,HttpStatus.OK);
+    @DeleteMapping(value ={"/deleteResult/{result}"})
+    public ResponseEntity<?>  deleteResultById(@PathVariable int result){
+        Result res = resultServiceImpl.getResultByResultId(result);
+        if(res != null) {
+            resultServiceImpl.delete(res);
+            return new ResponseEntity<>(true, HttpStatus.OK);
+        }
         else
             return new ResponseEntity<>(false,HttpStatus.NOT_FOUND);
-    }*/
+    }
 }

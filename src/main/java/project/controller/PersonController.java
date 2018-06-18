@@ -29,7 +29,7 @@ public class PersonController {
     public ResponseEntity<?> create(@RequestBody Person person){
         return new ResponseEntity<>(personServiceImpl.create(person),HttpStatus.OK);
 
-    }
+    }/*
     @DeleteMapping(value ={"/{login}/"})
     public  ResponseEntity<?> deletePersonByLogin(@PathVariable String login){
         Person person = personServiceImpl.findByLogin(login);
@@ -38,13 +38,13 @@ public class PersonController {
             return new ResponseEntity<>(true,HttpStatus.OK);}
         else
             return new ResponseEntity<>(false,HttpStatus.NOT_FOUND);
-    }
-    @GetMapping(value={"login/{login}/{password}"})
+    }*/
+    @GetMapping(value={"/login/{login}/{password}"})
     public ResponseEntity<?> getPersonByLogin(@PathVariable String login,@PathVariable String password){
         Person person = this.personServiceImpl.findByLogin(login);
         if(person != null) {
             if(person.getPassword().equals(password)){
-                return new ResponseEntity<>(true,HttpStatus.OK);
+                return new ResponseEntity<>(person,HttpStatus.OK);
             }
             return new ResponseEntity<>(null,HttpStatus.UNAUTHORIZED);
 
