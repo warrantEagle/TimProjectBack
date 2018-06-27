@@ -25,8 +25,12 @@ public class PersonController {
         return personServiceImpl.findAllPeople();
     }
 
-    @PostMapping
+    @PostMapping("create")
     public ResponseEntity<?> create(@RequestBody Person person){
+        Person p = this.personServiceImpl.findByLogin(person.getLogin());
+        if(p!= null){
+            return new ResponseEntity<>("użytkownik o podanym loginie już istnieje",HttpStatus.CONFLICT);
+        }
         return new ResponseEntity<>(personServiceImpl.create(person),HttpStatus.OK);
 
     }
