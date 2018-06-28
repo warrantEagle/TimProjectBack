@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface PointRepository extends CrudRepository<Point, String> {
 
-    List<Point> findByIdResult(int idResult);
+    Point[] findByIdResult(int idResult);
     Point save (Point point);
 }

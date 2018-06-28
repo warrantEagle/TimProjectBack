@@ -22,6 +22,7 @@ public class ResultController {
     private ResultServiceImpl resultServiceImpl;
 
 
+
     @GetMapping(value={"findAllResult"})
     public ResponseEntity<?>  findAll(){
         return new ResponseEntity<>(resultServiceImpl.findAll(),HttpStatus.OK);
@@ -37,7 +38,10 @@ public class ResultController {
         return new ResponseEntity<>(resultServiceImpl.findByLoginPerson(result),HttpStatus.OK);
     }
 
-
+    @GetMapping(value="/points/{idResult}")
+    public ResponseEntity<?>  getPointsByResultId(@PathVariable int idResult){
+        return new ResponseEntity<>(resultServiceImpl.getPointsByResultId(idResult),HttpStatus.OK);
+    }
 
 
     @PostMapping(value={"createResult"})

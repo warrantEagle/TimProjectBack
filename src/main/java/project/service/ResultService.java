@@ -13,4 +13,5 @@ public interface ResultService {
     List<Result> findByLoginPerson(String loginPerson);
     Point createPoints(Point[] point);
     Result getResultByResultId(int idResult);
+    Point[] getPointsByResultId(int idResult);
 }

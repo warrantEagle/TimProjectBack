@@ -9,11 +9,11 @@ import java.util.Vector;
 
 @Service
 public class ResultServiceImpl implements ResultService {
-    private int idResult;
     @Autowired
     private final ResultRepository resultRepository;
     @Autowired
     private final PointRepository pointRepository;
+    private int idResult;
 
     public ResultServiceImpl(ResultRepository resultRepository, PointRepository pointRepository) {
         this.resultRepository = resultRepository;
@@ -25,7 +25,10 @@ public class ResultServiceImpl implements ResultService {
         return resultRepository.findByIdResult(idResult);
     }
 
-
+    @Override
+    public Point[] getPointsByResultId(int idResult) {
+        return pointRepository.findByIdResult(idResult);
+    }
 
 
     @Override
@@ -40,9 +43,9 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public Result create(Result result) {
-        int a =-1;
+        int a = -1;
         List<Result> results = findAll();
-        if(results.size() >0) {
+        if (results.size() > 0) {
             Vector<Integer> ids = new Vector<Integer>();
             for (int i = 0; i < results.size(); i++)
                 ids.add(results.get(i).getIdResult());
@@ -54,21 +57,23 @@ public class ResultServiceImpl implements ResultService {
                     a = ids.get(i);
             }
         }
-        result.setIdResult(a+1);
-        Result res =  resultRepository.save(result);
-       idResult = res.getIdResult();
+        result.setIdResult(a + 1);
+        Result res = resultRepository.save(result);
+        idResult = res.getIdResult();
         return null;
     }
+
     @Override
     public Point createPoints(Point[] point) {
 
-        for(int i=0; i<point.length; i++){
+        for (int i = 0; i < point.length; i++) {
             point[i].setIdResult(this.idResult);
             this.pointRepository.save(point[i]);
         }
 
         return null;
     }
+
     @Override
     public List<Result> findByLoginPerson(String loginPerson) {
         return resultRepository.findByLoginPerson(loginPerson);
