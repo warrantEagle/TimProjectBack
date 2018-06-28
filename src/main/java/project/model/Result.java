@@ -1,6 +1,8 @@
 package project.model;
 
 
+import lombok.Getter;
+import lombok.Setter;
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
@@ -9,7 +11,8 @@ import project.controller.PersonController;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
+@Getter
+@Setter
 @NodeEntity
 public class Result {
 
@@ -49,7 +52,7 @@ public class Result {
         training.add(person);
     }
 
-    public int getIdResult() {
+    /*public int getIdResult() {
         return idResult;
     }
 
@@ -103,6 +106,6 @@ public class Result {
 
     public void setDate(long date) {
         this.date = date;
-    }
+    }*/
 
 }

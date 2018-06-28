@@ -1,6 +1,8 @@
 package project.model;
 
 
+import lombok.Getter;
+import lombok.Setter;
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
@@ -11,7 +13,8 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-
+@Getter
+@Setter
 @NodeEntity
 public class Person {
 
@@ -65,7 +68,7 @@ public class Person {
                 '}';
     }
 
-    public String getLogin() {
+    /*public String getLogin() {
         return login;
     }
 
@@ -127,5 +130,5 @@ public class Person {
 
     public void setAge(int age) {
         this.age = age;
-    }
+    }*/
 }
