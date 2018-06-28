@@ -1,12 +1,9 @@
 package project.model;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
-@Getter
-@Setter
+
 @NodeEntity
 public class Point {
 
@@ -29,7 +26,7 @@ public class Point {
         this.index = index;
     }
 
-/*
+
     public Long getId() {
         return id;
     }
@@ -68,5 +65,5 @@ public class Point {
 
     public void setIndex(int index) {
         this.index = index;
-    }*/
+    }
 }

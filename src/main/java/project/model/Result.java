@@ -5,41 +5,21 @@ import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
+import project.controller.PersonController;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @NodeEntity
 public class Result {
 
-    /**
-     * Neo4j doesn't REALLY have bi-directional relationships. It just means when querying
-     * to ignore the direction of the relationship.
-     * https://dzone.com/articles/modelling-data-neo4j
-     */
-    @Relationship(type = "Training", direction = Relationship.INCOMING)
-    public Set<Person> training;
-    long time;
     @Id
     @GeneratedValue()
     private Long id;
+
     private int idResult;
     private double kcal;
     private double length;
-    private double pace;
-    private String loginPerson;
-    private long date;
-    public Result() {
-    }
-
-    public Result(double dist, double pace, double kcal, long time, long date, String loginPerson) {
-        this.kcal = kcal;
-        this.length = dist;
-        this.time = time;
-        this.loginPerson = loginPerson;
-        this.date = date;
-        this.pace = pace;
-    }
 
     public double getPace() {
         return pace;
@@ -48,6 +28,31 @@ public class Result {
     public void setPace(double pace) {
         this.pace = pace;
     }
+
+    private double pace;
+    long time;
+    private String loginPerson;
+    private long date;
+
+    public Result() {
+    }
+
+    public Result(double kcal, double length,double pace, long time, long date, String loginPerson) {
+        this.kcal = kcal;
+        this.length = length;
+        this.time = time;
+        this.loginPerson = loginPerson;
+        this.date = date;
+        this.pace = pace;
+    }
+
+    /**
+     * Neo4j doesn't REALLY have bi-directional relationships. It just means when querying
+     * to ignore the direction of the relationship.
+     * https://dzone.com/articles/modelling-data-neo4j
+     */
+    @Relationship(type = "Training", direction = Relationship.INCOMING)
+    public Set<Person> training;
 
     public void Training(Person person) {
         if (training == null) {

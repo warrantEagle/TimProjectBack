@@ -33,9 +33,9 @@ public class ResultController {
         return new ResponseEntity<>(resultServiceImpl.getResultByResultId(idResult),HttpStatus.OK);
     }
 
-    @GetMapping(value ={"/{result}"})
-    public ResponseEntity<?>  findResultByLoginPerson(@PathVariable String result){
-        return new ResponseEntity<>(resultServiceImpl.findByLoginPerson(result),HttpStatus.OK);
+    @GetMapping(value ={"/{personLogin}"})
+    public ResponseEntity<?>  findResultByLoginPerson(@PathVariable String personLogin){
+        return new ResponseEntity<>(resultServiceImpl.findByLoginPerson(personLogin),HttpStatus.OK);
     }
 
     @GetMapping(value="/points/{idResult}")
